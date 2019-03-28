@@ -9,8 +9,8 @@ def getws(request, type_id):
     respuesta_login = requests.get(url_login)
     token = respuesta_login.json()['token']
 
-    print('Pidiendo data de obras...')
-    url_obras = "http://obras.jujuy.gob.ar/obras/web/index.php/wsobras/obras?desde=2018-01-01 00:00:00.00&hasta=2018-01-31 23:59:59.00&sortField=nombre&sortDirection=ASC&page=1"
+    print('Pidiendo una pagina de data de TODAS las obras...')
+    url_obras = "http://obras.jujuy.gob.ar/obras/web/index.php/wsobras/obras?desde=1900-01-01&hasta=9999-12-31&sortField=nombre&sortDirection=ASC&page=1"
     respuesta_obras = requests.get(url_obras, auth=(token, token))
     data_obras = respuesta_obras.json()
 
