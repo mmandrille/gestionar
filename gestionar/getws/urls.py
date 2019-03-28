@@ -4,5 +4,5 @@ from . import views
 
 app_name = 'getws'
 urlpatterns = [
-    path('<int:type_id>/', views.getws, name='getws'),
+    path('<int:max_pages>/', views.getws, name='getws'),
 ]
