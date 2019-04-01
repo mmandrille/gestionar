@@ -46,10 +46,10 @@ class Acciones(models.Model):
     estado_id = models.ForeignKey(Estado, on_delete=models.CASCADE)#Estado
     organismo_id = models.ForeignKey(Organismo, on_delete=models.CASCADE)#Organismo
     descripcion = HTMLField()
-    monto = models.IntegerField(default=0, blank=True)
+    monto = models.IntegerField(default=0, blank=True, null=True)
     financiacion_id = models.ForeignKey(Financiacion, on_delete=models.CASCADE)#Financiacion
-    latitud = models.DecimalField(max_digits=8, decimal_places=3)
-    longitud = models.DecimalField(max_digits=8, decimal_places=3)
+    latitud = models.DecimalField(max_digits=8, decimal_places=3, blank=True, null=True)
+    longitud = models.DecimalField(max_digits=8, decimal_places=3, blank=True, null=True)
     departamento_id = models.ForeignKey(Departamento, on_delete=models.CASCADE)#Departamento
     municipio_id = models.ForeignKey(Municipio, on_delete=models.CASCADE)#Municipio
     localidad_id = models.ForeignKey(Localidad, on_delete=models.CASCADE)#localidad
@@ -58,3 +58,23 @@ class Acciones(models.Model):
     fecha_creacion = models.DateField(default=datetime.date.today)
     def __str__(self):
             return self.nombre
+
+class Tipo_Comunicacion(models.Model):
+    nombre = models.CharField('Nombre', max_length=100)
+    def __str__(self):
+            return self.nombre
+
+class Medio(models.Model):
+    tipo = models.ForeignKey(Tipo_Comunicacion, on_delete=models.CASCADE)
+    nombre = models.CharField('Nombre', max_length=100)
+    def __str__(self):
+            return self.tipo.nombre + ' ' + self.nombre
+
+class Comunicacion(models.Model):
+    id_accion = models.ForeignKey(Acciones, on_delete=models.CASCADE)
+    tipo = models.ForeignKey(Tipo_Comunicacion, on_delete=models.CASCADE)
+    medio = models.ForeignKey(Medio, on_delete=models.CASCADE)
+    titulo = models.CharField('Titulo', max_length=100)
+    descripcion = HTMLField()
+    monto = models.IntegerField(default=0, blank=True, null=True)
+    fecha_creacion = models.DateField(default=datetime.date.today)

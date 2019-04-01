@@ -30,11 +30,11 @@ def getws(request, max_pages):
                 accion.id_ws = ws_obra['ID']
                 accion.nombre = ws_obra['NOMBRE']
                 accion.descripcion = ws_obra['DESCRIPCION']
-                accion.latitud = ws_obra['LATITUD']
-                accion.longitud = ws_obra['LONGITUD']
                 accion.fecha_creacion = ws_obra['FECHA_CREACION'][0:10]
                 #Conversiones Simpls
                 if ws_obra['MONTO'] is not None: accion.monto = ws_obra['MONTO']
+                if ws_obra['LATITUD'] is not None: accion.latitud = ws_obra['LATITUD']
+                if ws_obra['LONGITUD'] is not None: accion.longitud = ws_obra['LONGITUD']
                 if ws_obra['BORRADO'] == 1: accion.borrado = True
                 if ws_obra['PUBLICADO'] == 1: accion.publicado = True
                 #Creacion con campos de subtablas
