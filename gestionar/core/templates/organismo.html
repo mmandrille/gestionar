@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Bienvenidos al Sitio de Gestion de Comunicacion de acciones Oficiales</h1>
+    <h3>Organismo: {{ organismo.nombre }}</h3>
+    <h4> Acciones de Gobierno </h4>
+    <ul>
+        {% for accion in organismo.acciones.all %}
+            <li><a href="/accion/{{ accion.id }}">{{ accion.nombre }}</a></li>
+        {% endfor %}
+    </ul> 
+{% endblock %}

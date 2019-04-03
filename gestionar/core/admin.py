@@ -16,9 +16,16 @@ class ComunicacionInline(admin.TabularInline):
 
 class AccionAdmin(admin.ModelAdmin):
     search_fields = ['nombre', 'descripcion']
+    readonly_fields = ['id_ws', 'nombre', 'descripcion', 'organismo_ws', 'estado_id', 'monto', 'financiacion_id', 'latitud', 'longitud', 'departamento_id', 'municipio_id', 'localidad_id', 'borrado', 'publicado', 'fecha_creacion']
     inlines = [
         ComunicacionInline,
     ]
+
+
+
+
+
+
 
 # Register your models here.
 admin.site.register(Tipo_Comunicacion, Tipo_ComunicacionAdmin)#registrado para poder editar en inline/ pero no visible por el FooAdmin

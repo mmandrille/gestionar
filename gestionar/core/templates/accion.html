@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Bienvenidos al Sitio de Gestion de Comunicacion de acciones Oficiales</h1>
+    <h3>Accion: {{ accion.nombre }}</h3>
+    <p> Aqui deberiamos agregar el resto de la informacion </p>
+    <h4> Comunicaciones de la Accion:</p>
+    <ul>
+        {% for comunicacion in accion.comunicaciones.all %}
+            <li>{{ comunicacion.titulo }}: {{ comunicacion.medio }}</a></li>
+        {% endfor %}
+    </ul> 
+{% endblock %}
