@@ -5,4 +5,5 @@ from . import views
 app_name = 'core'
 urlpatterns = [
     #Web Services
+    url(r'^$', views.home, name='home'),
 ]

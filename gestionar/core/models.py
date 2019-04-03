@@ -40,9 +40,17 @@ class Localidad(models.Model):
     def __str__(self):
             return self.nombre
 
+IMPORTANCIA = (
+    (1, 'Prioritaria'),
+    (3, 'Intermedia'),
+    (6, 'Leve'),
+    (9, 'Sin Marcar'),
+)
+
 class Acciones(models.Model):
     id_ws = models.IntegerField(unique=True)
     nombre = models.CharField('Nombre', max_length=100)
+    importancia = models.IntegerField(choices=IMPORTANCIA, default=9)
     estado_id = models.ForeignKey(Estado, on_delete=models.CASCADE)#Estado
     organismo_id = models.ForeignKey(Organismo, on_delete=models.CASCADE)#Organismo
     descripcion = HTMLField()
@@ -68,10 +76,10 @@ class Medio(models.Model):
     tipo = models.ForeignKey(Tipo_Comunicacion, on_delete=models.CASCADE)
     nombre = models.CharField('Nombre', max_length=100)
     def __str__(self):
-            return self.tipo.nombre + ' ' + self.nombre
+            return self.nombre
 
 class Comunicacion(models.Model):
-    id_accion = models.ForeignKey(Acciones, on_delete=models.CASCADE)
+    id_accion = models.ForeignKey(Acciones, on_delete=models.CASCADE, related_name="comunicaciones")
     tipo = models.ForeignKey(Tipo_Comunicacion, on_delete=models.CASCADE)
     medio = models.ForeignKey(Medio, on_delete=models.CASCADE)
     titulo = models.CharField('Titulo', max_length=100)
