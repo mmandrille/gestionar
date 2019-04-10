@@ -15,8 +15,29 @@ body
 
 }
 
-.dlinea_organismo {
+.pantalla
+{
   width: 100%;
+}
+
+.listado {
+  display: inline-block;
+  width: 80%;
+}
+
+.filtros {
+  vertical-align: top;
+  display: inline-block;
+  width: 15%;
+}
+
+.dlinea_cantidad {
+  display: inline-block;
+  width: 15%;
+}
+
+.dlinea_organismo {
+  width: 80%;
 }
 
 .dlinea_nombre{

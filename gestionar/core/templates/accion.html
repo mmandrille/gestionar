@@ -19,7 +19,7 @@
 
     {% if request.user.is_staff %}
         {% if accion.comunicaciones %}
-            <h4> Comunicaciones de la Accion:</h4>
+            <h3> Comunicaciones de la Accion:</h3>
             <ul>
                 {% for comunicacion in accion.comunicaciones.all %}
                     <li>{{ comunicacion.titulo }}: {{ comunicacion.medio }}</a></li>

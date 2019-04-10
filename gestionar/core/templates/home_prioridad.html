@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Bienvenidos al Sitio de Gestion de Comunicacion de acciones Oficiales</h1>
+    <div class="pantalla">
+        <div class="filtros">
+            <p><b>Mostrar por:</b></p>
+            <p><a href="/">Organismos</a></p>
+            <p><a href="/prio/">Prioridad</a></p>
+        </div>    
+        <div class="listado">
+            <h3>Acciones:</h3>
+            <ul>
+                <li class="linea_org">
+                    <div class="dlinea_organismo">
+                        <b>
+                            <div class="dlinea_nombre">Nombre de la Accion</div>
+                            <div class="dlinea_cantidad">Comunicaciones</div>
+                        </b>
+                    </div>
+                </li>
+                {% for i in importancia %}
+                    <h2>{{i.1}}</h2>
+                    {% for accion in acciones %}
+                        {% if accion.importancia == i.0 %}
+                            <li class="linea_org">
+                                <div class="dlinea_organismo">
+                                    <div class="dlinea_nombre"><a href="/accion/{{ accion.id }}">{{ accion.nombre }}</a></div>
+                                    <div class="dlinea_cantidad">{{ accion.comunicaciones.count }}</div>
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
