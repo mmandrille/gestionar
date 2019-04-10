@@ -1,0 +1,26 @@
+    {% load static %}
+    <style type="text/css">
+      @font-face {
+        font-family: Archia;
+        font-weight: normal;
+        src: url({% static 'Archia-Regular.otf' %}) format('truetype');
+        src: local({% static 'Archia-Regular.otf' %}) format('truetype');
+     }
+      @font-face {
+        font-family: Archia;
+        font-weight: bold;
+        src: url({% static 'Archia-Bold.otf' %}) format('truetype');
+        src: local({% static 'Archia-Bold.otf' %}) format('truetype');
+     }
+      @font-face {
+        font-family: Archia;
+        font-weight: lighter;
+        src: url({% static 'Archia-Thin.otf' %}) format('truetype');
+        src: local({% static 'Archia-Thin.otf' %}) format('truetype');
+     }
+    </style>
+    
+    <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/lightbox.js' %}"></script>

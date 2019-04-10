@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'Archia';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Archia'), url('../fonts/Archia-Thin.otf') format('truetype');
+  }
+
+body
+{
+   font-family: Archia !important;
+}
+
+.linea_org {
+  list-style-type: none;
+
+}
+
+.dlinea_organismo {
+  width: 100%;
+}
+
+.dlinea_nombre{
+  display: inline-block;
+  width: 80%;
+}
+
+.dlinea_cantidad{
+  display: inline-block;
+  width: 15%;
+}

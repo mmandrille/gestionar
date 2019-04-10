@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.db.models import Count
+from django.contrib.admin.views.decorators import staff_member_required
 
 #Import Particulares
 from .models import Organismo, Acciones

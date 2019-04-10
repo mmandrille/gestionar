@@ -1,12 +1,30 @@
 {% extends 'base.html' %}
+{% load l10n %}
+
+
 {% block content %}
     <h1>Bienvenidos al Sitio de Gestion de Comunicacion de acciones Oficiales</h1>
+
     <h3>Accion: {{ accion.nombre }}</h3>
-    <p> Aqui deberiamos agregar el resto de la informacion </p>
-    <h4> Comunicaciones de la Accion:</p>
-    <ul>
-        {% for comunicacion in accion.comunicaciones.all %}
-            <li>{{ comunicacion.titulo }}: {{ comunicacion.medio }}</a></li>
-        {% endfor %}
-    </ul> 
+    <p> <b>Situacion:</b> {{ accion.estado_id }}</p>
+    <p> <b>Financiacion:</b> {{ accion.financiacion_id }} >
+        {% if accion.organismo %}
+            {{ accion.organismo }}
+        {% else %}
+            {{ accion.organismo_ws.nombre }}
+        {% endif %}
+    </p>
+    <p> <b>Lugar:</b> {{ accion.departamento_id }}, {{ accion.localidad_id }} <a href="https://www.google.com/maps/search/?api=1&query={{accion.latitud|unlocalize}},{{accion.longitud|unlocalize}}">(Mapa)</a></p>
+    <p> <b>Descripcion:</b> {{ accion.descripcion }}</p>
+
+    {% if request.user.is_staff %}
+        {% if accion.comunicaciones %}
+            <h4> Comunicaciones de la Accion:</h4>
+            <ul>
+                {% for comunicacion in accion.comunicaciones.all %}
+                    <li>{{ comunicacion.titulo }}: {{ comunicacion.medio }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
 {% endblock %}

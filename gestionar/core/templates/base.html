@@ -2,13 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{% block title %}Jujuy Digital{% endblock %}</title>
+    <title>{% block title %}Gestionar{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/lightbox.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
   </head>
   <body id="body">
     <main>
+      {% include "header.html"%}
+
       {% block content %}
       
       {% endblock %}
     </main>
+    {% include "scripts.html"%}
   </body>
 </html>

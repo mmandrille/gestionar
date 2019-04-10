@@ -21,7 +21,7 @@ def obtener_organismos():#Funcion que obtiene del sistema de organigrama los org
 		organismos = list()
 		for org in orgs:
 			organismos.append((org['id'],org['nombre']))
-			cache.set("organismos", organismos, 10 * 60)  # guardar la data por 10 minutos, y después sola expira
+		cache.set("organismos", organismos, 10 * 60)  # guardar la data por 10 minutos, y después sola expira
 	return organismos
 
 IMPORTANCIA = (

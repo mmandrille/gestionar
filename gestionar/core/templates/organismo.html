@@ -4,8 +4,23 @@
     <h3>Organismo: {{ organismo.nombre }}</h3>
     <h4> Acciones de Gobierno </h4>
     <ul>
+        <li class="linea_org">
+            <div class="dlinea_organismo">
+                <div class="dlinea_nombre">Acciones del Gobierno</div>
+                {% if request.user.is_staff %}
+                    <div class="dlinea_cantidad">Comunicaciones</div>
+                {% endif %}
+            </div>
+        </li>
         {% for accion in organismo.acciones.all %}
-            <li><a href="/accion/{{ accion.id }}">{{ accion.nombre }}</a></li>
+            <li class="linea_org">
+                <div class="dlinea_organismo">
+                    <div class="dlinea_nombre"><a href="/accion/{{ accion.id }}">{{ accion.nombre }}</a></div>
+                    {% if request.user.is_staff %}
+                        <div class="dlinea_cantidad">{{ accion.comunicaciones.count }}</div>
+                    {% endif %}
+                </div>
+            </li>
         {% endfor %}
     </ul> 
 {% endblock %}

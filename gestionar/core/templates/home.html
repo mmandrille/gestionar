@@ -3,8 +3,21 @@
     <h1>Bienvenidos al Sitio de Gestion de Comunicacion de acciones Oficiales</h1>
     <h3>Organismos:</h3>
     <ul>
+        <li class="linea_org">
+            <div class="dlinea_organismo">
+                <b>
+                    <div class="dlinea_nombre">Nombre del Organismo</div>
+                    <div class="dlinea_cantidad">Acciones</div>
+                </b>
+            </div>
+        </li>
         {% for organismo in organismos %}
-            <li><a href="/org/{{ organismo.id }}">{{ organismo.nombre }}</a></li>
+            <li class="linea_org">
+                <div class="dlinea_organismo">
+                    <div class="dlinea_nombre"><a href="/org/{{ organismo.id }}">{{ organismo.nombre }}</a></div>
+                    <div class="dlinea_cantidad">{{ organismo.acciones.count }}</div>
+                </div>
+            </li>
         {% endfor %}
     </ul> 
 {% endblock %}
