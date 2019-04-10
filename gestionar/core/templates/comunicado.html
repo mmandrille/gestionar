@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load l10n %}
+
+
+{% block content %}
+    <h1>Bienvenidos al Sitio de Gestion de Comunicacion de acciones Oficiales</h1>
+    <h3>
+        Comunicado: {{ comunicacion.titulo }}
+        {% if request.user.is_staff %}
+            <a href="/admin/core/comunicacion/{{comunicacion.id}}/change/">(Editar)</a>
+        {% endif %}
+    </h3>
+    <p><b>Tipo:</b> {{ comunicacion.tipo }} - <b>Medio:</b> {{ comunicacion.medio }}</p>
+    <p><b>Costo:</b> {{ comunicacion.monto }}</p>
+    {% if comunicacion.url %}<p><a href="{{comunicacion.url}}" target="_blank">Link</a></p>{% endif %}
+    <p><b>Descripcion:</b> {{ comunicacion.descripcion | safe}}</p>
+{% endblock %}

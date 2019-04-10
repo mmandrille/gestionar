@@ -7,7 +7,45 @@
 
 body
 {
-   font-family: Archia !important;
+  /*  background: url(../img/background.png);/*
+    * 
+    */
+  background: white;
+  overflow-x: hidden;
+  font-family: Archia;
+  padding-top: 70px;
+}
+
+header
+{
+position: absolute;
+    width: 100%;
+    position: fixed;
+    height: 150px;
+    z-index: 11;
+    background-color: #71c4ca;
+    box-shadow: 0 3px 25px #000000a3;
+    top: 0;
+}
+
+header.sticky
+{
+/*    background-color: #a71680db;*/
+        box-shadow: none;
+}
+
+h1{
+  font-family: Archia;
+}
+
+p{
+    font-family: Lato-Black;
+    font-size: 16px;
+}
+
+a:focus, a:hover
+{
+    text-decoration: none;
 }
 
 .linea_org {
@@ -31,21 +69,16 @@ body
   width: 15%;
 }
 
-.dlinea_cantidad {
-  display: inline-block;
-  width: 15%;
-}
-
 .dlinea_organismo {
-  width: 80%;
+  width: 100%;
 }
 
 .dlinea_nombre{
   display: inline-block;
-  width: 80%;
+  width: 85%;
 }
 
-.dlinea_cantidad{
+.dlinea_cantidad {
   display: inline-block;
-  width: 15%;
+  width: 10%;
 }

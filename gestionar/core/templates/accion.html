@@ -5,24 +5,31 @@
 {% block content %}
     <h1>Bienvenidos al Sitio de Gestion de Comunicacion de acciones Oficiales</h1>
 
-    <h3>Accion: {{ accion.nombre }}</h3>
+    <h3>
+        Accion: {{ accion.nombre }}
+        {% if request.user.is_staff %}
+            <a href="/admin/core/acciones/{{accion.id}}/change/" target="_blank">(Editar)</a>
+        {% endif %}
+    </h3>
     <p> <b>Situacion:</b> {{ accion.estado_id }}</p>
     <p> <b>Financiacion:</b> {{ accion.financiacion_id }} >
         {% if accion.organismo %}
             {{ accion.organismo }}
         {% else %}
-            {{ accion.organismo_ws.nombre }}
+            <a href='/org/{{ accion.organismo_ws.id }}'>{{ accion.organismo_ws.nombre }}</a>
         {% endif %}
     </p>
-    <p> <b>Lugar:</b> {{ accion.departamento_id }}, {{ accion.localidad_id }} <a href="https://www.google.com/maps/search/?api=1&query={{accion.latitud|unlocalize}},{{accion.longitud|unlocalize}}">(Mapa)</a></p>
-    <p> <b>Descripcion:</b> {{ accion.descripcion }}</p>
+    <p> <b>Lugar:</b> {{ accion.departamento_id }}, {{ accion.localidad_id }} <a  target="_blank" href="https://www.google.com/maps/search/?api=1&query={{accion.latitud|unlocalize}},{{accion.longitud|unlocalize}}">(Mapa)</a></p>
+    <p> <b>Descripcion:</b> {{ accion.descripcion | safe }}</p>
 
     {% if request.user.is_staff %}
-        {% if accion.comunicaciones %}
+        {% if accion.comunicaciones.count == 0 %}
+            <h3 style='color: red'>Esta accion no ha sido comunicada aun</h3>
+        {% else %}
             <h3> Comunicaciones de la Accion:</h3>
             <ul>
                 {% for comunicacion in accion.comunicaciones.all %}
-                    <li>{{ comunicacion.titulo }}: {{ comunicacion.medio }}</a></li>
+                    <li><a href="/comunicado/{{ comunicacion.id }}" target="_blank">{{ comunicacion.titulo }}: {{ comunicacion.medio }}</a></li>
                 {% endfor %}
             </ul>
         {% endif %}

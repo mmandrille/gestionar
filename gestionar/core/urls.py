@@ -10,4 +10,5 @@ urlpatterns = [
 
     path('org/<int:org_id>', views.list_organismos, name='list_organismos'),
     path('accion/<int:accion_id>', views.ver_accion, name='ver_accion'),
+    path('comunicado/<int:comunicado_id>', views.ver_comunicacion, name='ver_comunicacion'),
 ]

@@ -22,7 +22,8 @@
                     <li class="linea_org">
                         <div class="dlinea_organismo">
                             <div class="dlinea_nombre"><a href="/org/{{ organismo.id }}">{{ organismo.nombre }}</a></div>
-                            <div class="dlinea_cantidad">{{ organismo.acciones.count }}</div>
+                            <div class="dlinea_cantidad">{{ organismo.acciones.count }} / {{ organismo.cantidad_comunicados }}</div>
+                            
                         </div>
                     </li>
                 {% endfor %}

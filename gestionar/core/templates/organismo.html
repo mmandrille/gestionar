@@ -1,26 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Bienvenidos al Sitio de Gestion de Comunicacion de acciones Oficiales</h1>
-    <h3>Organismo: {{ organismo.nombre }}</h3>
-    <h4> Acciones de Gobierno </h4>
+    <h2>Organismo: {{ organismo.nombre }}</h2>
+    <h3> Acciones de Gobierno </h3>
     <ul>
         <li class="linea_org">
             <div class="dlinea_organismo">
-                <div class="dlinea_nombre">Acciones del Gobierno</div>
-                {% if request.user.is_staff %}
-                    <div class="dlinea_cantidad">Comunicaciones</div>
-                {% endif %}
+                <b>
+                    <div class="dlinea_nombre">Acciones del Gobierno</div>
+                    {% if request.user.is_staff %}
+                        <div class="dlinea_cantidad">Comunicaciones</div>
+                    {% endif %}
+                </b>
             </div>
         </li>
 
         {% for i in importancia %}
-            <h2>{{i.1}}</h2>
-            {% for accion in acciones %}
+            <h3>{{i.1}}</h3>
+            {% for accion in organismo.acciones.all %}
                 {% if accion.importancia == i.0 %}
                     <li class="linea_org">
                         <div class="dlinea_organismo">
-                            <div class="dlinea_nombre"><a href="/accion/{{ accion.id }}">{{ accion.nombre }}</a></div>
-                            <div class="dlinea_cantidad">{{ accion.comunicaciones.count }}</div>
+                            <div class="dlinea_nombre"><a href="/accion/{{ accion.id }}" target="_blank">{{ accion.nombre }}</a></div>
+                            <div class="dlinea_cantidad">
+                                <div style="color:
+                                    {% if accion.comunicaciones.count %}
+                                        green
+                                    {% else %}
+                                        red
+                                    {% endif %}
+                                    ">
+                                    <b>{{ accion.comunicaciones.count }}</b>
+                                </div>
+                            </div>
                         </div>
                     </li>
                 {% endif %}

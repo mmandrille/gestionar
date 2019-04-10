@@ -41,6 +41,8 @@ class Organismo(models.Model):
     nombre = models.CharField('Nombre', max_length=100)
     def __str__(self):
             return self.nombre
+    def cantidad_comunicados(self):
+        return Comunicacion.objects.filter(id_accion__in=Acciones.objects.filter(organismo_ws=self)).count()
 
 class Financiacion(models.Model):
     nombre = models.CharField('Nombre', max_length=100)
@@ -103,3 +105,5 @@ class Comunicacion(models.Model):
     url = models.URLField(blank=True, null=True)
     monto = models.IntegerField(default=0, blank=True, null=True)
     fecha_creacion = models.DateField(default=datetime.date.today)
+    def __str__(self):
+        return self.id_accion.nombre + ' > ' + self.titulo

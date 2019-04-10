@@ -8,7 +8,6 @@
             <p><a href="/prio/">Prioridad</a></p>
         </div>    
         <div class="listado">
-            <h3>Acciones:</h3>
             <ul>
                 <li class="linea_org">
                     <div class="dlinea_organismo">
@@ -24,8 +23,18 @@
                         {% if accion.importancia == i.0 %}
                             <li class="linea_org">
                                 <div class="dlinea_organismo">
-                                    <div class="dlinea_nombre"><a href="/accion/{{ accion.id }}">{{ accion.nombre }}</a></div>
-                                    <div class="dlinea_cantidad">{{ accion.comunicaciones.count }}</div>
+                                    <div class="dlinea_nombre"><a href="/accion/{{ accion.id }}">({{ accion.organismo_ws.nombre }})<b>{{ accion.nombre }}</b></a></div>
+                                    <div class="dlinea_cantidad">
+                                        <div style="color:
+                                            {% if accion.comunicaciones.count %}
+                                                green
+                                            {% else %}
+                                                red
+                                            {% endif %}
+                                            ">
+                                            <b>{{ accion.comunicaciones.count }}</b>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
                         {% endif %}

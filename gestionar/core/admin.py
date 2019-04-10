@@ -13,6 +13,7 @@ class Tipo_ComunicacionAdmin(admin.ModelAdmin):
 
 class ComunicacionInline(admin.TabularInline):
     model = Comunicacion
+    extra= 1
 
 class AccionAdmin(admin.ModelAdmin):
     search_fields = ['nombre', 'descripcion']
@@ -27,4 +28,4 @@ admin.site.register(Tipo_Comunicacion, Tipo_ComunicacionAdmin)#registrado para p
 admin.site.register(Medio, MedioAdmin)#registrado para poder editar en inline/ pero no visible por el FooAdmin
 
 admin.site.register(Acciones, AccionAdmin)
-#admin.site.register(Comunicacion)
+admin.site.register(Comunicacion)
