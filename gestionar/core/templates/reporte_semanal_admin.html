@@ -1,0 +1,16 @@
+{% autoescape off %}
+Estimado {{usuario.first_name}} {{usuario.last_name}}({{usuario.username}}),
+Usted es el responsable del sistema de Gestion de Acciones de Gobierno.
+
+Actualmente existen {{organismos.count}} organismos sin Responsable:
+<ul>
+    {% for org in organismos %}
+    <li>
+       {{org.nombre}}
+    </li>
+    {% endfor %}
+</ul>
+
+Por favor lo invitamos a acceder al sistema y actualizar el mismo para cumplir con las expectativas de comunicacion gubernamental.
+A travez de este correo recibiras las notificaciones y noticias importantes del sistema semanalmente.
+{% endautoescape %}

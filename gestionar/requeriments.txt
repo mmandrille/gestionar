@@ -1,4 +1,4 @@
 Django
 pillow
-django-ipware
 django-tinymce
+django-background-tasks

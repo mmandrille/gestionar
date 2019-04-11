@@ -5,6 +5,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 #Import Particulares
 from .models import Organismo, Acciones, Comunicacion, IMPORTANCIA, obtener_organismos
 from .ModelForm import AccionesForm
+from .tasks import enviar_mails
 
 
 # Create your views here.
@@ -54,3 +55,7 @@ def ver_accion(request, accion_id):
 def ver_comunicacion(request, comunicado_id):
     comunicacion = Comunicacion.objects.get(pk=comunicado_id)
     return render(request, 'comunicado.html', {"comunicacion": comunicacion})
+
+def test_mail(request):
+    enviar_mails()
+    return render(request, 'resultado.html', {'texto': 'Los mails fueron enviados con exito', })

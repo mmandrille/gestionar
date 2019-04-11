@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #PlugIns Extras
     'tinymce',
+    'background_task',
     #Desarrollos personales
     'core.apps.CoreConfig',
 ]

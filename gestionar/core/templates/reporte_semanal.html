@@ -1,0 +1,23 @@
+{% autoescape off %}
+Estimado {{usuario.first_name}} {{usuario.last_name}}({{usuario.username}}),
+Usted es el responsable por las Acciones de {{ organismo.nombre }}
+
+Actualmente usted posee:
+<ul>
+    <li>
+        <h2>{{acciones_importantes.count}} Acciones Prioritarias sin comunicar:</h2>
+
+    </li>
+
+    <li>
+        <h3>{{acciones_intermedias.count}} Acciones Intermedias sin comunicar:</h3>
+
+    </li>
+
+    <li><b>{{acciones_leves.count}} Acciones Intermedias sin comunicar.</b></li>
+    <li><p>{{acciones_sinmarcar.count}} Acciones Indefinidas sin comunicar que deberian ser asignadas a un tipo de prioridad.</p></li>
+</ul>
+
+Por favor lo invitamos a acceder al sistema y actualizar el mismo para cumplir con las expectativas de comunicacion gubernamental.
+A travez de este correo recibiras las notificaciones y noticias importantes del sistema semanalmente.
+{% endautoescape %}

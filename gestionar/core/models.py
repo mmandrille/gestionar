@@ -39,7 +39,7 @@ class Estado(models.Model):
 
 class Organismo(models.Model):
     nombre = models.CharField('Nombre', max_length=100)
-    usuarios = models.ForeignKey(User, on_delete=models.SET_NULL ,blank=True, null=True)
+    usuario = models.ForeignKey(User, on_delete=models.SET_NULL ,blank=True, null=True)
     def __str__(self):
             return self.nombre
     def cantidad_comunicados(self):
