@@ -2,8 +2,10 @@
 db.sqlite3
 credenciales.py
 *.pyc
+*/archivos/*
 archivos/*
 static/*
+*/static/*
 
 # Django #
 *.log
