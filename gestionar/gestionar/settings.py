@@ -25,7 +25,7 @@ SECRET_KEY = ')(099_d9_n#z&t@5v^k1v)ca9h5*rdv2rhvt^vjbhkx2$@sb38'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['gestionar.jujuy.gob.ar', 'localhost', ]
+ALLOWED_HOSTS = ['gestionar.jujuy.gob.ar', 'localhost', '127.0.0.1', ]
 
 
 # Application definition
