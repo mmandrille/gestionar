@@ -9,7 +9,7 @@ from django.core.mail import EmailMessage
 from .models import Organismo
 from .functions import delete_tags
 
-#@background(schedule=1)
+@background(schedule=60)
 def mail_semanal():
     print("Iniciamos proceso de envio de correos")
     organismo_sinuser = list()

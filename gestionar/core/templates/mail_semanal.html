@@ -1,8 +1,8 @@
 {% autoescape off %}
-Estimado {{usuario.first_name}} {{usuario.last_name}}({{usuario.username}}),
-Usted es el responsable por las Acciones de {{ organismo.nombre }}
+<p>Estimado {{usuario.first_name}} {{usuario.last_name}}<b>({{usuario.username}})</b>,</p>
+<p>Usted es el responsable por las Acciones de <b>{{ organismo.nombre }}</b></p>
 
-Actualmente usted posee:
+<p><b>Actualmente usted posee:</b></p>
 <ul>
     {% if acciones_prioritarias %}
     <li>
@@ -37,11 +37,13 @@ Actualmente usted posee:
     {% endif %}
     {% if acciones_prioritarias %}
         <li>
-            <b>{{acciones_sinmarcar.count}} Acciones <b>Indefinidas</b> sin comunicar (deberian ser asignadas a un tipo de prioridad).</b>
+            <b>{{acciones_sinmarcar.count}} Acciones <b>Indefinidas</b> sin comunicar (deberian ser asignadas a algun tipo de prioridad).</b>
         </li>
     {% endif %}
 </ul>
 
-Lo invitamos a acceder al sistema y actualizar el mismo para cumplir con las expectativas de comunicacion gubernamental.
-A travez de este correo recibiras las notificaciones y noticias importantes del sistema semanalmente.
+<p>Lo invitamos a acceder al sistema y actualizar el mismo para cumplir con las expectativas de comunicacion gubernamental.</p>
+<p>A travez de este correo recibiras las notificaciones y noticias importantes del sistema semanalmente.</p>
+<p>Quedamos atentos a cualquier consulta que nos desee realizar en este correo</p>
+<p><b>Atentamente, el equipo de Gestionar</b></p>
 {% endautoescape %}

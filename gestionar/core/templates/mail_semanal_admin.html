@@ -1,8 +1,8 @@
 {% autoescape off %}
-Estimado {{usuario.first_name}} {{usuario.last_name}}({{usuario.username}}),
-Usted es el responsable del sistema de Gestion de Acciones de Gobierno.
+<p>Estimado {{usuario.first_name}} {{usuario.last_name}}(<b>{{usuario.username}}</b>),</p>
+<p>Usted es responsable General del sistema de Gestion de Acciones de Gobierno.</p>
 
-Actualmente existen {{organismos.count}} organismos sin Responsable:
+<p><b>Actualmente existen {{organismos.count}} organismos sin Responsable:</b></p>
 <ul>
     {% for org in organismos %}
     <li>
@@ -11,6 +11,8 @@ Actualmente existen {{organismos.count}} organismos sin Responsable:
     {% endfor %}
 </ul>
 
-Por favor lo invitamos a acceder al sistema y actualizar el mismo para cumplir con las expectativas de comunicacion gubernamental.
-A travez de este correo recibiras las notificaciones y noticias importantes del sistema semanalmente.
+<p>Lo invitamos a acceder al sistema y actualizar el mismo para cumplir con las expectativas de comunicacion gubernamental.</p>
+<p>A travez de este correo recibiras las notificaciones y noticias importantes del sistema semanalmente.</p>
+<p>Quedamos atentos a cualquier consulta que nos desee realizar en este correo</p>
+<p><b>Atentamente, el equipo de Gestionar</b></p>
 {% endautoescape %}

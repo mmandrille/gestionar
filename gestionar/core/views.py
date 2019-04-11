@@ -5,8 +5,9 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render
 from django.db.models import Count
 from django.contrib.admin.views.decorators import staff_member_required
-
-#Import Particulares
+from django.contrib.auth.models import User
+#Import de otros modulos
+from background_task import background
 from .models import Organismo, Acciones, Comunicacion, IMPORTANCIA, obtener_organismos
 from .ModelForm import AccionesForm
 from .tasks import mail_semanal
@@ -62,5 +63,5 @@ def ver_comunicacion(request, comunicado_id):
 
 @staff_member_required
 def test_mail_semanal(request):
-    mail_semanal()
+    mail_semanal(verbose_name="Envio de Mails Semanale", creator=request.user)
     return render(request, 'resultado.html', {'texto': 'Los mails fueron enviados con exito', })
