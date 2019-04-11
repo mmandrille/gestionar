@@ -1,3 +1,7 @@
+#Decoradores
+from django.contrib.admin.views.decorators import staff_member_required
+
+#Import normales
 from django.shortcuts import render
 from django.db.models import Count
 from django.contrib.admin.views.decorators import staff_member_required
@@ -5,7 +9,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 #Import Particulares
 from .models import Organismo, Acciones, Comunicacion, IMPORTANCIA, obtener_organismos
 from .ModelForm import AccionesForm
-from .tasks import enviar_mails
+from .tasks import mail_semanal
 
 
 # Create your views here.
@@ -56,6 +60,7 @@ def ver_comunicacion(request, comunicado_id):
     comunicacion = Comunicacion.objects.get(pk=comunicado_id)
     return render(request, 'comunicado.html', {"comunicacion": comunicacion})
 
-def test_mail(request):
-    enviar_mails()
+@staff_member_required
+def test_mail_semanal(request):
+    mail_semanal()
     return render(request, 'resultado.html', {'texto': 'Los mails fueron enviados con exito', })

@@ -15,5 +15,5 @@ urlpatterns = [
 
 
     #Testing mail
-    path('test/mail', views.test_mail, name='test_mail'),
+    path('test/mail', views.test_mail_semanal, name='test_mail_semanal'),
 ]

@@ -1,0 +1,47 @@
+{% autoescape off %}
+Estimado {{usuario.first_name}} {{usuario.last_name}}({{usuario.username}}),
+Usted es el responsable por las Acciones de {{ organismo.nombre }}
+
+Actualmente usted posee:
+<ul>
+    {% if acciones_prioritarias %}
+    <li>
+        <h3>{{acciones_prioritarias.count}} Acciones <b>Prioritarias</b> sin comunicar:</h3>
+        <ul>
+            {% for accion in acciones_prioritarias %}
+            <li>
+                <a href="http://gestionar.jujuy.gob.ar/accion/accion.id">{{accion.nombre}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endif %}
+    
+    {% if acciones_intermedias %}
+    <li>
+        <h3>{{acciones_intermedias.count}} Acciones <b>Intermedias</b> sin comunicar:</h3>
+        <ul>
+            {% for accion in acciones_intermedias %}
+            <li>
+                <a href="http://gestionar.jujuy.gob.ar/accion/accion.id">{{accion.nombre}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endif %}
+
+    {% if acciones_prioritarias %}
+        <li>
+            <b>{{acciones_leves.count}} Acciones <b>Intermedias</b> sin comunicar.</b>
+        </li>
+    {% endif %}
+    {% if acciones_prioritarias %}
+        <li>
+            <b>{{acciones_sinmarcar.count}} Acciones <b>Indefinidas</b> sin comunicar (deberian ser asignadas a un tipo de prioridad).</b>
+        </li>
+    {% endif %}
+</ul>
+
+Lo invitamos a acceder al sistema y actualizar el mismo para cumplir con las expectativas de comunicacion gubernamental.
+A travez de este correo recibiras las notificaciones y noticias importantes del sistema semanalmente.
+{% endautoescape %}

@@ -6,7 +6,7 @@ Actualmente existen {{organismos.count}} organismos sin Responsable:
 <ul>
     {% for org in organismos %}
     <li>
-       {{org.nombre}}
+       <p><b>{{org.nombre}}</b> > Posee {{org.sin_comunicar}} acciones sin comunicados.</p>
     </li>
     {% endfor %}
 </ul>

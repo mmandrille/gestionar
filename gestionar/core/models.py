@@ -44,6 +44,8 @@ class Organismo(models.Model):
             return self.nombre
     def cantidad_comunicados(self):
         return Comunicacion.objects.filter(id_accion__in=Acciones.objects.filter(organismo_ws=self)).count()
+    def sin_comunicar(self):
+        return Acciones.objects.filter(organismo_ws=self, comunicaciones=None).count()
 
 class Financiacion(models.Model):
     nombre = models.CharField('Nombre', max_length=100)
