@@ -45,11 +45,11 @@ def getws(request, max_pages):
                         estado.save()
                         accion.estado_id = estado
                 #Organismo
-                try: accion.organismo_id = Organismo.objects.get(nombre=ws_obra['MINISTERIO'])
+                try: accion.organismo_ws = Organismo.objects.get(nombre=ws_obra['MINISTERIO'])
                 except ObjectDoesNotExist:
                         organismo = Organismo(nombre=ws_obra['MINISTERIO'])
                         organismo.save()
-                        accion.organismo_id = organismo
+                        accion.organismo_ws = organismo
                 #Financiacion
                 try: accion.financiacion_id = Financiacion.objects.get(nombre=ws_obra['TIPO_FINANCIACION'])
                 except ObjectDoesNotExist:
