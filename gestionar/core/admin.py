@@ -1,6 +1,6 @@
 from django.contrib import admin
 #Importamos nuestros modelos
-from .models import Tipo_Comunicacion, Medio, Acciones, Comunicacion
+from .models import Tipo_Comunicacion, Medio, Acciones, Comunicacion, Organismo
 
 #Agregamos utilidades
 class MedioAdmin(admin.ModelAdmin):
@@ -29,3 +29,4 @@ admin.site.register(Medio, MedioAdmin)#registrado para poder editar en inline/ p
 
 admin.site.register(Acciones, AccionAdmin)
 admin.site.register(Comunicacion)
+admin.site.register(Organismo)

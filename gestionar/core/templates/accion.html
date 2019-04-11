@@ -1,24 +1,15 @@
 {% extends 'base.html' %}
 {% load l10n %}
 
-
 {% block content %}
-    <h1>Bienvenidos al Sitio de Gestion de Comunicacion de acciones Oficiales</h1>
-
     <h3>
-        Accion: {{ accion.nombre }}
+        <b>Accion:</b> {{ accion.nombre }}
         {% if request.user.is_staff %}
             <a href="/admin/core/acciones/{{accion.id}}/change/" target="_blank">(Editar)</a>
         {% endif %}
     </h3>
     <p> <b>Situacion:</b> {{ accion.estado_id }}</p>
-    <p> <b>Financiacion:</b> {{ accion.financiacion_id }} >
-        {% if accion.organismo %}
-            {{ accion.organismo }}
-        {% else %}
-            <a href='/org/{{ accion.organismo_ws.id }}'>{{ accion.organismo_ws.nombre }}</a>
-        {% endif %}
-    </p>
+    <p> <b>Financiacion:</b> {{ accion.financiacion_id }} > <a href='/org/{{ accion.organismo_ws.id }}'>{{ accion.organismo_ws.nombre }}</a></p>
     <p> <b>Lugar:</b> {{ accion.departamento_id }}, {{ accion.localidad_id }} <a  target="_blank" href="https://www.google.com/maps/search/?api=1&query={{accion.latitud|unlocalize}},{{accion.longitud|unlocalize}}">(Mapa)</a></p>
     <p> <b>Descripcion:</b> {{ accion.descripcion | safe }}</p>
 

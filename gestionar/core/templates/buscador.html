@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Organismo: {{ organismo.nombre }}</h2>
+    <h2>Resultado:</h2>
     <ul>
         <li class="linea_org">
             <div class="dlinea_organismo">
@@ -15,11 +15,11 @@
 
         {% for i in importancia reversed %}
             <h3>{{i.1}}</h3>
-            {% for accion in organismo.acciones.all %}
+            {% for accion in acciones.all %}
                 {% if accion.importancia == i.0 %}
                     <li class="linea_org">
                         <div class="dlinea_organismo">
-                            <div class="dlinea_nombre"><a href="/accion/{{ accion.id }}" target="_blank">{{ accion.nombre }}</a></div>
+                            <div class="dlinea_nombre"><a href="/accion/{{ accion.id }}" target="_blank">[{{ accion.organismo_ws.nombre }}] {{ accion.nombre }}</a></div>
                             <div class="dlinea_cantidad">
                                 <div style="color:
                                     {% if accion.comunicaciones.count %}

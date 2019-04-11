@@ -25,10 +25,10 @@ def obtener_organismos():#Funcion que obtiene del sistema de organigrama los org
 	return organismos
 
 IMPORTANCIA = (
-    (1, 'Prioritaria'),
-    (3, 'Intermedia'),
-    (6, 'Leve'),
-    (9, 'Sin Marcar'),
+    (0, 'Indefinida'),
+    (3, 'Leve'),
+    (6, 'Intermedia'),
+    (9, 'Prioritaria'),
 )
 
 # Create your models here.
@@ -39,6 +39,7 @@ class Estado(models.Model):
 
 class Organismo(models.Model):
     nombre = models.CharField('Nombre', max_length=100)
+    usuarios = models.ForeignKey(User, on_delete=models.SET_NULL ,blank=True, null=True)
     def __str__(self):
             return self.nombre
     def cantidad_comunicados(self):

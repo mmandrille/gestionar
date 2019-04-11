@@ -1,13 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Bienvenidos al Sitio de Gestion de Comunicacion de acciones Oficiales</h1>
-    <h3>Organismos:</h3>
     <div class="pantalla">
-        <div class="filtros">
-            <p><b>Mostrar por:</b></p>
-            <p><a href="/">Organismos</a></p>
-            <p><a href="/prio/">Prioridad</a></p>
-        </div>    
+        {% include "filtros.html"%}  
         <div class="listado">
             <ul>
                 <li class="linea_org">

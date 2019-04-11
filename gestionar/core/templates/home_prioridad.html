@@ -1,40 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Bienvenidos al Sitio de Gestion de Comunicacion de acciones Oficiales</h1>
     <div class="pantalla">
-        <div class="filtros">
-            <p><b>Mostrar por:</b></p>
-            <p><a href="/">Organismos</a></p>
-            <p><a href="/prio/">Prioridad</a></p>
-        </div>    
+        {% include "filtros.html"%}    
         <div class="listado">
             <ul>
                 <li class="linea_org">
                     <div class="dlinea_organismo">
                         <b>
-                            <div class="dlinea_nombre">Nombre de la Accion</div>
-                            <div class="dlinea_cantidad">Comunicaciones</div>
+                            <div class="dlinea_nombre"><h3><b>Nombre de la Accion</b></h3></div>
+                            {% if request.user.is_staff %}
+                                <div class="dlinea_cantidad"><h3><b>Comunicaciones</b></h3></div>
+                            {% endif %}
                         </b>
                     </div>
                 </li>
-                {% for i in importancia %}
-                    <h2>{{i.1}}</h2>
+                {% for i in importancia reversed %}
+                    <h3><b>{{i.1}}</b></h3>
                     {% for accion in acciones %}
                         {% if accion.importancia == i.0 %}
                             <li class="linea_org">
                                 <div class="dlinea_organismo">
                                     <div class="dlinea_nombre"><a href="/accion/{{ accion.id }}">({{ accion.organismo_ws.nombre }})<b>{{ accion.nombre }}</b></a></div>
-                                    <div class="dlinea_cantidad">
-                                        <div style="color:
-                                            {% if accion.comunicaciones.count %}
-                                                green
-                                            {% else %}
-                                                red
-                                            {% endif %}
-                                            ">
-                                            <b>{{ accion.comunicaciones.count }}</b>
+                                    {% if request.user.is_staff %}
+                                        <div class="dlinea_cantidad">
+                                            <div style="color:
+                                                {% if accion.comunicaciones.count %}
+                                                    green
+                                                {% else %}
+                                                    red
+                                                {% endif %}
+                                                ">
+                                                <b>{{ accion.comunicaciones.count }}</b>
+                                            </div>
                                         </div>
-                                    </div>
+                                    {% endif %}
                                 </div>
                             </li>
                         {% endif %}

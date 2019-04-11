@@ -1,0 +1,23 @@
+        <div class="filtros">
+            <p><b>Mostrar por:</b></p>
+            <p><a href="/">Organismos</a></p>
+            <p><a href="/prio/">Prioridad</a></p>
+
+            <hr>
+            <p><b>Buscar:</b></p>
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {% for field in form %}
+
+                    <div class="input-group">
+                    {{ field.label_tag }}<br>
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <p style="color:black">{{ error }}</p>
+                    {% endfor %}
+                    </div>
+
+                {% endfor %}
+                <button type="submit">Buscar</button>
+            </form>
+        </div>  

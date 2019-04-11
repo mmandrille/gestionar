@@ -3,26 +3,53 @@ from django.db.models import Count
 from django.contrib.admin.views.decorators import staff_member_required
 
 #Import Particulares
-from .models import Organismo, Acciones, Comunicacion, IMPORTANCIA
+from .models import Organismo, Acciones, Comunicacion, IMPORTANCIA, obtener_organismos
+from .ModelForm import AccionesForm
 
 
 # Create your views here.
+def buscador(request):
+    if request.method == 'POST':
+        form = AccionesForm(request.POST)
+        if form.is_valid():
+            acciones = Acciones.objects.all()
+            if form.cleaned_data.get('importancia'):
+                print(form.cleaned_data.get('importancia'))
+                acciones = acciones.filter(importancia=form.cleaned_data.get('importancia'))
+            if form.cleaned_data.get('localidad_id'):
+                acciones = acciones.filter(localidad_id=form.cleaned_data.get('localidad_id'))
+            if form.cleaned_data.get('nombre'):
+                acciones = acciones.filter(nombre__icontains=form.cleaned_data.get('nombre'))
+            return acciones.annotate(count=Count('comunicaciones')).order_by('-importancia', '-count', 'organismo_ws')[:50]
+
 def home(request):
-    organismos = Organismo.objects.annotate(count=Count('acciones')).order_by('-count')
-    return render(request, 'home.html', {"organismos": organismos})
+    acciones = buscador(request)
+    if acciones: return render(request, 'buscador.html', {"acciones": acciones, "importancia": IMPORTANCIA})
+    else:
+        form = AccionesForm()
+        organismos = Organismo.objects.annotate(count=Count('acciones')).order_by('-count')
+        return render(request, 'home.html', {"organismos": organismos, 'form':form})
 
 def home_prioridad(request):
-    #organismos = Organismo.objects.annotate(count=Count('acciones')).order_by('-count')
-    acciones = Acciones.objects.annotate(count=Count('comunicaciones')).order_by('importancia', '-count', 'organismo_ws')[:100]
-    return render(request, 'home_prioridad.html', {"acciones": acciones, "importancia": IMPORTANCIA})
+    acciones = buscador(request)
+    if acciones: return render(request, 'buscador.html', {"acciones": acciones, "importancia": IMPORTANCIA})
+    else:
+        buscador(request)
+        form = AccionesForm()
+        acciones = Acciones.objects.annotate(count=Count('comunicaciones')).order_by('-importancia', '-count', 'organismo_ws')[:100]
+        return render(request, 'home_prioridad.html', {"acciones": acciones, 'form':form, "importancia": IMPORTANCIA})
+
+def contacto(request):
+    return render(request, 'contacto.html', { })
 
 def list_organismos(request, org_id):
     organismo = Organismo.objects.get(pk=org_id)
     return render(request, 'organismo.html', {"organismo": organismo, "importancia": IMPORTANCIA})
 
 def ver_accion(request, accion_id):
+    orgs_ws = obtener_organismos()
     accion = Acciones.objects.get(pk=accion_id)
-    return render(request, 'accion.html', {"accion": accion})
+    return render(request, 'accion.html', {"accion": accion, "orgs_ws": orgs_ws})
 
 def ver_comunicacion(request, comunicado_id):
     comunicacion = Comunicacion.objects.get(pk=comunicado_id)
