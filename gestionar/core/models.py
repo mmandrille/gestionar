@@ -69,7 +69,7 @@ class Localidad(models.Model):
 
 class Acciones(models.Model):
     organismo = models.PositiveIntegerField(choices= obtener_organismos(), default=0)
-    importancia = models.IntegerField(choices=IMPORTANCIA, default=9)
+    importancia = models.IntegerField(choices=IMPORTANCIA, default=0)
     id_ws = models.IntegerField(unique=True)
     nombre = models.CharField('Nombre', max_length=100)
     estado_id = models.ForeignKey(Estado, on_delete=models.CASCADE, related_name="acciones")#Estado

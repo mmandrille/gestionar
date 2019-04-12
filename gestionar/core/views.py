@@ -6,6 +6,9 @@ from django.shortcuts import render
 from django.db.models import Count
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
+#Task Manager Models
+from background_task.models import Task as bg_Tasks
+from background_task.models_completed import CompletedTask as bg_CompletedTask
 #Import de otros modulos
 from background_task import background
 from .models import Organismo, Acciones, Comunicacion, IMPORTANCIA, obtener_organismos
@@ -65,3 +68,13 @@ def ver_comunicacion(request, comunicado_id):
 def test_mail_semanal(request):
     mail_semanal(verbose_name="Envio de Mails Semanale", creator=request.user)
     return render(request, 'resultado.html', {'texto': 'Los mails fueron enviados con exito', })
+
+@staff_member_required
+def task_progress(request, queue_name):
+    tareas_en_progreso = bg_Tasks.objects.filter(queue= queue_name)
+    tareas_terminadas = bg_CompletedTask.objects.filter(queue= queue_name)
+    return render(request, 'task_progress.html', {'tarea_queue': queue_name, 
+                                                'tareas_totales': (len(tareas_en_progreso)+len(tareas_terminadas)) ,
+                                                'tareas_en_cola': len(tareas_en_progreso), 
+                                                'tareas_terminadas': len(tareas_terminadas),
+                                                "bool_refresh": True })

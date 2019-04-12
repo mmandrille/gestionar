@@ -2720,7 +2720,6 @@ box-shadow: 0 0 13px #2c5b7173;
 
 section.login
 {
-background: url(./img/tilcara.jpg);
     width: 100%;
     height: 100%;
     height: calc(70vh - 100px);
@@ -2816,7 +2815,6 @@ section.login button:hover
 
 section.inscripcion
 {
-background: url(./img/tilcara.jpg);
     width: 100%;
     height: 100%;
     height: calc(70vh - 100px);
@@ -2924,7 +2922,6 @@ section.inscripcion .respuesta-container
 
 section.progreso
 {
-background: url(./img/tilcara.jpg);
     width: 100%;
     height: 100%;
     height: calc(70vh - 100px);

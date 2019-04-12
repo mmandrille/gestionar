@@ -2,6 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    {% if bool_refresh %}
+      <meta http-equiv="refresh" content="10" >
+    {% endif %}
     <title>{% block title %}Gestionar{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/lightbox.css' %}" />

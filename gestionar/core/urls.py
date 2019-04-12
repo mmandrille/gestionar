@@ -13,7 +13,9 @@ urlpatterns = [
     path('accion/<int:accion_id>', views.ver_accion, name='ver_accion'),
     path('comunicado/<int:comunicado_id>', views.ver_comunicacion, name='ver_comunicacion'),
 
-
     #Testing mail
-    path('test/mail', views.test_mail_semanal, name='test_mail_semanal'),
+    path('send/mail_semanal', views.test_mail_semanal, name='test_mail_semanal'),
+
+    #task_manager
+    path('task_progress/<str:queue_name>', views.task_progress, name='task_progress'),
 ]
