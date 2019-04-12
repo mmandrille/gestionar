@@ -20,7 +20,11 @@
                         {% if accion.importancia == i.0 %}
                             <li class="linea_org">
                                 <div class="dlinea_organismo">
-                                    <div class="dlinea_nombre"><a href="/accion/{{ accion.id }}">({{ accion.organismo_ws.nombre }})<b>{{ accion.nombre }}</b></a></div>
+                                    <div class="dlinea_nombre">
+                                        <a href="/org/{{ accion.organismo_ws.id }}" target="_blank">[{{ accion.organismo_ws.nombre }}]</a>
+                                        <a href="/accion/{{ accion.id }}" target="_blank"><b>{{ accion.nombre }}</b></a>
+                                        <a href="/localidad/{{accion.localidad_id.id}}">({{ accion.localidad_id }})</a>
+                                    </div>
                                     {% if request.user.is_staff %}
                                         <div class="dlinea_cantidad">
                                             <div style="color:

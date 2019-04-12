@@ -46,6 +46,8 @@ class Organismo(models.Model):
         return Comunicacion.objects.filter(id_accion__in=Acciones.objects.filter(organismo_ws=self)).count()
     def sin_comunicar(self):
         return Acciones.objects.filter(organismo_ws=self, comunicaciones=None).count()
+    def get100_acciones(self):
+        return Acciones.objects.filter(organismo_ws=self)[:100]
 
 class Financiacion(models.Model):
     nombre = models.CharField('Nombre', max_length=100)
@@ -87,6 +89,8 @@ class Acciones(models.Model):
     fecha_creacion = models.DateField(default=datetime.date.today)
     def __str__(self):
             return self.nombre
+    class Meta:
+        ordering = ('-importancia', 'organismo', )
 
 class Tipo_Comunicacion(models.Model):
     nombre = models.CharField('Nombre', max_length=100)

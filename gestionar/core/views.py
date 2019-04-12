@@ -29,7 +29,7 @@ def buscador(request):
                 acciones = acciones.filter(localidad_id=form.cleaned_data.get('localidad_id'))
             if form.cleaned_data.get('nombre'):
                 acciones = acciones.filter(nombre__icontains=form.cleaned_data.get('nombre'))
-            return acciones.annotate(count=Count('comunicaciones')).order_by('-importancia', '-count', 'organismo_ws')[:50]
+            return acciones.annotate(count=Count('comunicaciones')).order_by('-importancia', '-count', 'organismo_ws')[:100]
 
 def home(request):
     acciones = buscador(request)
@@ -54,6 +54,10 @@ def contacto(request):
 def list_organismos(request, org_id):
     organismo = Organismo.objects.get(pk=org_id)
     return render(request, 'organismo.html', {"organismo": organismo, "importancia": IMPORTANCIA})
+
+def list_localidad(request, localidad_id):
+    acciones = Acciones.objects.filter(localidad_id=localidad_id).order_by('-importancia', 'organismo_ws')[:100]
+    return render(request, 'buscador.html', {"acciones": acciones, "importancia": IMPORTANCIA})
 
 def ver_accion(request, accion_id):
     orgs_ws = obtener_organismos()
